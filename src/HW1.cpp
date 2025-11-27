@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+void AC(){
+    int d,h; cin >> d >> h;
+    int s=0;
+    vector<pair<int,int>> a(d);
+    for(int i=0;i<d;i++){
+        cin >> a[i].first >> a[i].second;
+        s+=a[i].second;
+    }
+    if(s<h){
+        cout << "NO"; return;
+    }
+    cout << "YES" << '\n';
+    s=0; int i=0;
+    while(d--){
+        if(h<a[i].second){
+            cout << a[i].second-(a[i].second-h) << " "; break;
+        } else {
+            cout << a[i].second << " ";
+            h-=a[i].second;
+        }
+        i++;
+    }
+    if(d>0){
+        while(d--) cout << 0 << " ";
+    }
+}
+signed main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    AC();
+    return 0;
+}
