@@ -1,33 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
 void AC(){
-    int d,h; cin >> d >> h;
-    int s=0;
-    vector<pair<int,int>> a(d);
-    for(int i=0;i<d;i++){
-        cin >> a[i].first >> a[i].second;
-        s+=a[i].second;
-    }
-    if(s<h){
-        cout << "NO"; return;
-    }
-    cout << "YES" << '\n';
-    s=0; int i=0;
-    while(d--){
-        if(h<a[i].second){
-            cout << a[i].second-(a[i].second-h) << " "; break;
-        } else {
-            cout << a[i].second << " ";
-            h-=a[i].second;
+    string x;
+    int s=0,ans=0;
+    while(getline(cin,x)){
+        if(x[0]=='+') s++;
+        else if(x[0]=='-') s--;
+        else {
+            int i=1;
+            while(x[i]!=':') i++; i++;
+            string k=x.substr(i,x.size()-i);
+            ans+=k.size()*s;
         }
-        i++;
     }
-    if(d>0){
-        while(d--) cout << 0 << " ";
-    }
+    cout << ans;
 }
 signed main(){
-    ios::sync_with_stdio(false);
+    freopen("bai1.inp","r",stdin);
+    freopen("bai2.out","w",stdout);
+    ios::sync_with_stdio(0);
     cin.tie(nullptr);
     AC();
     return 0;
