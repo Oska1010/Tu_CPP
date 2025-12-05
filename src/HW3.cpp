@@ -1,35 +1,90 @@
 #include <bits/stdc++.h>
 using namespace std;
-int cw,ch;
-bool cmp(pair<pair<int,int>,int> a, pair<pair<int,int>,int> b){
-    int n=min((a.first.first-1)/cw,(a.first.second-1)/ch);
-    int m=min((b.first.first-1)/cw,(b.first.second-1)/ch);
-    return n<m;
-}
+#define int long long
 void AC(){
-    int n;
-    cin >> n >> cw >> ch;
-    vector<pair<pair<int,int>,int>> v;
-    map<int,int> mp;
-    for(int i=1;i<=n;i++){
-        int a,b; cin >> a >> b;
-        if(a>cw&&b>ch&&mp[a]<1&&mp[b]<1){
-            v.push_back({{a,b},i});
-            mp[a]++; mp[b]++;
+    string x; int a=0,l=0; vector<string> v;
+    while(getline(cin,x)){
+        int b=x.size(); a=max(a,b); v.push_back(x);
+    }
+    for(int i=0;i<a+2;i++) cout << "*"; cout << '\n';
+    for(string k:v){
+        cout << "*"; int s=a-k.size();
+        if(s%2==1){
+            if(l==0){
+                for(int i=0;i<s/2;i++) cout << " "; cout << k;
+                for(int i=0;i<s/2+1;i++) cout << " "; cout << "*\n"; l=1;
+            } else {
+                for(int i=0;i<s/2+1;i++) cout << " "; cout << k;
+                for(int i=0;i<s/2;i++) cout << " "; cout << "*\n"; l=0;
+            }
+        } else {
+            for(int i=0;i<s/2;i++) cout << " "; cout << k;
+            for(int i=0;i<s/2;i++) cout << " "; cout << "*\n";
         }
     }
-    sort(v.begin(),v.end(),cmp);
-    if(v.empty()){
-        cout << 0; return;
-    }
-    cout << v.size() << '\n';
-    for(int i=0;i<v.size();i++){
-        cout << v[i].second << " ";
-    }
+    for(int i=0;i<a+2;i++) cout << "*";
 }
-int main() {
+signed main(){
     ios::sync_with_stdio(0);
     cin.tie(nullptr);
     AC();
     return 0;
 }
+
+/*
+#include <bits/stdc++.h>
+using namespace std;
+#define stack void 
+#define include string
+#define bool cin
+#define unsigned cout
+#define continue int
+#define true nullptr
+#define break sync_with_stdio
+#define insert push_back
+#define gcd =
+#define zero 0
+stack AC(){
+    include x;
+    continue s gcd zero;
+    vector<include> v;
+    while(getline(bool,x)){
+        v.insert(x);
+        continue k=x.size();
+        s=max(s,k);
+    }
+    for(continue i gcd zero;i<s+2;i++) unsigned << "*"; unsigned << '\n';
+    continue l=zero;
+    for(include k:v){
+        unsigned << "*";
+        continue tmp=k.size();
+        if((s-tmp)%2==1){
+            if(l==zero){
+                l gcd 1;
+                for(continue i gcd zero;i<(s-tmp)/2;i++) unsigned << " ";
+                unsigned << k;
+                for(continue i gcd zero;i<(s-tmp)/2+1;i++) unsigned << " ";
+                unsigned << "*\n"; 
+            } else {
+                l gcd zero;
+                for(continue i gcd zero;i<(s-tmp)/2+1;i++) unsigned << " ";
+                unsigned << k;
+                for(continue i gcd zero;i<(s-tmp)/2;i++) unsigned << " ";
+                unsigned << "*\n";
+            }
+        } else {
+            for(continue i gcd zero;i<(s-tmp)/2;i++) unsigned << " ";
+            unsigned << k;
+            for(continue i gcd zero;i<(s-tmp)/2;i++) unsigned << " ";
+            unsigned << "*\n"; 
+        }
+    }
+    for(continue i gcd zero;i<s+2;i++) unsigned << "*";
+}
+continue main(){
+    ios::break(zero);
+    bool.tie(true);
+    AC();
+    return zero;
+}
+*/
